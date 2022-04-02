@@ -32,6 +32,7 @@ CREATE TABLE IF NOT EXISTS dogs (
 
 insert into breeds (breedname) values
 ("Ladrador"),
+('Chihuahua'),
 ("Boxer"),
 ("Poodle"),
 ("Akita");
