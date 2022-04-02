@@ -25,6 +25,7 @@ CREATE TABLE IF NOT EXISTS dogs (
   dogname VARCHAR(100),
   is_healthy INTEGER(1) DEFAULT 1,
   health_issues TEXT DEFAULT null,
+  number_vaccines INTEGER,
   color VARCHAR(100),
   breedid INTEGER,
   FOREIGN KEY (breedid) REFERENCES breeds(breedid) ON DELETE CASCADE
@@ -39,13 +40,13 @@ insert into breeds (breedname) values
 
 -- select * from breeds;
 
-insert into dogs (dogname, breedid, color) values
-("Rover", 1, "white"),
-("Sharik", 1, "brown"),
-("Lena", 2, "brown"),
-("Bobo", 2, "brown"),
-("Bobo", 3, "brown"),
-("Bailey", 3, "brown");
+insert into dogs (dogname, breedid, color, number_vaccines) values
+("Rover", 1, "white", 1),
+("Sharik", 1, "brown", 2),
+("Lena", 2, "brown", 1),
+("Bobo", 2, "brown", 1),
+("Bobo", 3, "brown", 1),
+("Bailey", 3, "brown", 4);
 
 update dogs
 set health_issues="toothache"
@@ -92,9 +93,12 @@ where dogid<10 and dogid>7;
 select * from dogs;
 
 
-select count(*) as [Number of vaccines], dogname
-from dogs
-group by health_issues;
+SELECT SUM(number_vaccines) AS [Number of Vaccines]
+FROM dogs;
+
+SELECT COUNT(*), number_vaccines
+FROM dogs
+group by number_vaccines;
 
 
 
